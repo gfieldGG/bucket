@@ -1,0 +1,46 @@
+{
+    "homepage": "https://runelite.net/",
+    "description": "A free, open source OldSchool RuneScape client.",
+    "license": {
+        "identifier": "BSD-2-Clause",
+        "url": "https://github.com/runelite/launcher/blob/master/LICENSE"
+    },
+    "version": "2.4.2",
+    "url": [
+        "https://github.com/runelite/launcher/releases/download/2.4.2/RuneLite.jar",
+        "https://github.com/runelite/launcher/raw/ee5b199ab949f5eb659ca0b4f50b96b8c463118d/src/main/resources/runelite.ico"
+    ],
+    "hash": [
+        "sha256:a8a33f9e9b53b71516ab04a93fca499f6c9f7675b487bad10ad513809cc27bde",
+        "sha256:260ADA322ECD19E2EB94C6DA1E432F57F1C015640056CA1800803FBA0621F17D"
+    ],
+    "extract_dir": "cowsay-psh-master",
+    "pre_install": [
+        "Write-Host 'Creating shortcut file to wrap .jar...'",
+        "$WScriptShell = New-Object -ComObject WScript.Shell",
+        "$Shortcut = $WScriptShell.CreateShortcut(\"$dir\\RuneLite.lnk\")",
+        "$Shortcut.TargetPath = 'java'",
+        "$Shortcut.Arguments = '-jar RuneLite.jar'",
+        "$Shortcut.IconLocation = \"$dir\\runelite.ico\"",
+        "$Shortcut.save()"
+    ],
+    "shortcuts": [
+        [
+            "RuneLite.lnk",
+            "RuneLite",
+            "",
+            "runelite.ico"
+        ]
+    ],
+    "notes": "Java 8, 11 or higher is recommended (https://github.com/runelite/runelite/issues/3999)",
+    "suggest": {
+        "java": [
+            "java/openjdk",
+            "java/zulu-jre",
+            "java/zulu-jdk",
+            "java/zulu11-jre",
+            "java/temurin11-jre",
+            "java/openjdk11"
+        ]
+    }
+}
