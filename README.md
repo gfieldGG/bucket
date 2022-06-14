@@ -7,6 +7,6 @@ My personal [Scoop](https://github.com/ScoopInstaller/Scoop) bucket. Use at your
 How do I install these manifests?
 ---------------------------------
 
-To add this bucket, run `scoop bucket add scoop-gfield https://github.com/gfieldGG/scoop-gfield`.
+To add this bucket, run `scoop bucket add gfield https://github.com/gfieldGG/scoop-gfield`.
 
 To install, do `scoop install <manifest>`.
