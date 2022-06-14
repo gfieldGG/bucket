@@ -22,9 +22,19 @@
     ],
     "installer": {
         "script": [
+            "$fontnameprefix = 'scoop '",
             "$fontfiles = Get-ChildItem -Path (Join-Path $dir 'fontfiles')",
             "Write-Host \"Linking $($fontfiles.Length) font files as userfonts...\"",
-            "foreach ($ff in $fontfiles) { New-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name \"scoop $($ff.BaseName) $($ff.extension)\" -PropertyType 'String' -Value $ff.FullName }"
+            "foreach ($ff in $fontfiles) { New-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name \"$fontnameprefix$($ff.BaseName) $($ff.extension)\" -PropertyType 'String' -Value $ff.FullName > $null }"
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "$fontnameprefix = 'scoop '",
+            "$filterstring = '*fira*code*mono*windows*otf'",
+            "$fonts = Get-Item -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' | Select-Object -ExpandProperty Property | Where-Object { $_ -like ($fontnameprefix + $filterstring) }",
+            "Write-Host \"Unlinking $($fonts.Length) userfonts...\"",
+            "foreach ($f in $fonts) { Remove-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $f }"
         ]
     }
 }
