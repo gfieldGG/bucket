@@ -1,0 +1,30 @@
+{
+    "homepage": "https://www.nerdfonts.com/",
+    "description": "A free monospaced font with programming ligatures. Patched by Nerd Fonts.",
+    "license": {
+        "identifier": "OFL-1.1",
+        "url": "https://github.com/tonsky/FiraCode/blob/master/LICENSE"
+    },
+    "version": "2.1.0",
+    "url": [
+        "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip"
+    ],
+    "hash": [
+        "sha256:21DE9AA0EDAA3FD2DC1D87FB9ECEC0B67C9B3B18BD1998A19904158067FEA7E7"
+    ],
+    "extract_to": [
+        "fontfiles"
+    ],
+    "pre_install": [
+        "$fontdir = Join-Path $dir 'fontfiles'",
+        "$filterstring = '*fira*code*mono*windows*otf'",
+        "Get-ChildItem -Path $fontdir -Exclude $filterstring | Remove-Item -Force"
+    ],
+    "installer": {
+        "script": [
+            "$fontfiles = Get-ChildItem -Path (Join-Path $dir 'fontfiles')",
+            "Write-Host \"Linking $($fontfiles.Length) font files as userfonts...\"",
+            "foreach ($ff in $fontfiles) { New-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name \"scoop $($ff.BaseName) $($ff.extension)\" -PropertyType 'String' -Value $ff.FullName }"
+        ]
+    }
+}
