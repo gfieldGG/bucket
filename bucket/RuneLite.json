@@ -14,7 +14,6 @@
         "sha256:a8a33f9e9b53b71516ab04a93fca499f6c9f7675b487bad10ad513809cc27bde",
         "sha256:260ADA322ECD19E2EB94C6DA1E432F57F1C015640056CA1800803FBA0621F17D"
     ],
-    "extract_dir": "cowsay-psh-master",
     "pre_install": [
         "Write-Host 'Creating shortcut file to wrap .jar...'",
         "$WScriptShell = New-Object -ComObject WScript.Shell",
